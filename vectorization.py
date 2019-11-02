@@ -18,7 +18,13 @@ chars, c_table = get_chars_and_ctable()
 questions = []
 expected = []
 print('Generating data...')
-while len(questions) < TRAINING_SIZE:
+
+#total: 346751
+#메모리 문제로 max 지정:
+MAX_TR_SIZE = 200000
+
+#while len(questions) < TRAINING_SIZE:
+while len(questions) < MAX_TR_SIZE:
     x, y = DATA_LOADER.next()
     # Pad the data with spaces such that it is always MAXLEN.
     q = x
@@ -42,10 +48,10 @@ print('Total addition questions:', len(questions))
 x = np.zeros((len(questions), INPUT_MAX_LEN, len(chars)), dtype=np.bool)
 y = np.zeros((len(questions), OUTPUT_MAX_LEN, len(chars)), dtype=np.bool)
 for i, sentence in enumerate(questions):
-    print(i)
+    #print(i)
     x[i] = c_table.encode(sentence, INPUT_MAX_LEN)
 for i, sentence in enumerate(expected):
-    print(i)
+    #print(i)
     y[i] = c_table.encode(sentence, OUTPUT_MAX_LEN)
 
 # Shuffle (x, y) in unison as the later parts of x will almost all be larger
