@@ -21,7 +21,7 @@ print('Generating data...')
 
 #total: 346751
 #메모리 문제로 max 지정:
-MAX_TR_SIZE = 50000
+MAX_TR_SIZE = 10000
 
 #while len(questions) < TRAINING_SIZE:
 while len(questions) < MAX_TR_SIZE:
